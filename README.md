@@ -1,6 +1,12 @@
 # EURO 2024 model notes
 
-A multipage Streamlit app built from my original EURO 2024 notebooks. It follows the analysis from public results and FIFA rankings through feature engineering, separate goal regressions, Poisson match probabilities, tournament simulation and a shareable report.
+A multipage Streamlit app developed from a fork of [sslp23/eurocup_sim](https://github.com/sslp23/eurocup_sim). It follows the analysis from public results and FIFA rankings through feature engineering, separate goal regressions, Poisson match probabilities, tournament simulation and a shareable report.
+
+## Credit and project origins
+
+This work was forked from **[sslp23/eurocup_sim](https://github.com/sslp23/eurocup_sim), by [sslp23](https://github.com/sslp23)**. Credit for the original project, notebook workflow and approach of combining goal regression models with Poisson match probabilities belongs to sslp23.
+
+I adapted the fork with changes to some model weights and weighting choices. Later additions include the multipage Streamlit interface, reproducible data snapshots, chronological validation, seeded tournament simulations and downloadable research reports. These changes build on sslp23’s work; the original approach was not developed independently for this repository.
 
 ## Run locally
 
