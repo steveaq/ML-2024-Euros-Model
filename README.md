@@ -1,5 +1,7 @@
 # EURO 2024 model notes
 
+[Open the live Streamlit app](https://ml-2024-euros-modelgit-6zvabpiedx2gdyu8rihm4t.streamlit.app/)
+
 A multipage Streamlit app developed from a fork of [sslp23/eurocup_sim](https://github.com/sslp23/eurocup_sim). It follows the analysis from public results and FIFA rankings through feature engineering, separate goal regressions, Poisson match probabilities, tournament simulation and a shareable report.
 
 ## Credit and project origins
