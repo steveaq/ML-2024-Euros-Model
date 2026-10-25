@@ -1,30 +1,47 @@
-# UEFA Euro 2024 Predictions
+# EURO 2024 model notes
 
-This project aims to predict the results of the UEFA Euro 2024 using Machine Learning (ML) models and the Poisson Distribution. The project generates two estimates of team goals using Regression ML models. These estimates are then used as the expected values for the Poisson Distribution to predict match outcomes.
+A multipage Streamlit app built from my original EURO 2024 notebooks. It follows the analysis from public results and FIFA rankings through feature engineering, separate goal regressions, Poisson match probabilities, tournament simulation and a shareable report.
 
-## Data Sources
+## Run locally
 
-The data for this project can be obtained from the following sources:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-- [FIFA World Ranking Dataset](https://www.kaggle.com/datasets/cashncarry/fifaworldranking?select=fifa_ranking-2024-04-04.csv): This dataset provides the FIFA rankings of national teams as of April 4, 2024.
-- [Predicting FIFA 2022 World Cup with ML](https://www.kaggle.com/code/sslp23/predicting-fifa-2022-world-cup-with-ml#WC-Simulation): This dataset includes various features and predictions related to FIFA World Cup matches.
+Python 3.11 or later is recommended. The date-frozen datasets are bundled; the app does not need API keys or Kaggle authentication. The first visit fits the selected model, then caches its results.
 
-Please download these datasets and place them in a folder named `data` in the root directory of this project.
+## Pages
 
-## Project Structure
+- **Overview:** the modelling question and a score-probability example.
+- **Data & coverage:** source records, date exclusions, goal distributions and provenance.
+- **Feature engineering:** pre-match form, rank weighting and feature assumptions.
+- **Model bench:** mean, linear, Random Forest and gradient boosting comparisons on 2023.
+- **Validation:** chronological 2024 holdout errors, residuals, reliability and predictions.
+- **Match lab:** neutral matchups, goal distributions, score grids and sensitivity scenarios.
+- **Tournament:** seeded group and knockout simulations, stage probabilities and simulation error.
+- **Presentation:** results, actual group-game review and a standalone HTML report download.
 
-The project consists of five Jupyter Notebook files that should be run in the following order:
+This is a retrospective reconstruction, not a preserved pre-tournament forecast. The original input CSVs and fitted pickles were never committed. The notebooks are retained; [method notes](docs/METHODS.md) explain what changed. In particular, the Gamma notebook actually compares linear and tree regressors; it does not fit a Gamma or XGBoost model.
 
-1. **db creator.ipynb**: Creates and sets up the initial database required for the project.
-2. **feats eng.ipynb**: Performs feature engineering to prepare the data for analysis and modeling.
-3. **data analysis.ipynb**: Conducts exploratory data analysis to understand the data and derive insights.
-4. **model.ipynb**: Builds and trains the Machine Learning models to estimate team goals.
-5. **poisson model.ipynb**: Uses the estimates from the ML models as the Poisson Distribution expected values to predict match outcomes.
+## Data and reproducibility
 
-## Requirements
+International results come from [Mart Jürisoo's public dataset](https://github.com/martj42/international_results). FIFA rankings use the April 2024 [cashncarry dataset](https://www.kaggle.com/datasets/cashncarry/fifaworldranking), with the exact mirror URL and both raw/bundled SHA-256 hashes in [the manifest](data/manifest.json). Inputs are pinned to repository commits. Dataset licences and source attribution remain with their respective publishers.
 
-Ensure you have the following installed:
+```bash
+python scripts/prepare_data.py
+python -m unittest discover -s tests -v
+python scripts/export_report.py --output euro-2024-report.html
+```
 
-- Python 3.x
-- Jupyter Notebook
-- Anaconda
+Preparation downloads the pinned inputs if absent and builds compact local snapshots. The normal app reads bundled snapshots without downloading. Results before 14 June 2024 enter modelling; actual EURO group games are kept for retrospective evaluation. Some historical scores include extra time, which limits their use as a 90-minute target. The app makes that assumption visible.
+
+## Streamlit Community Cloud
+
+Connect this repository, select the `main` branch and set the entrypoint to `app.py`. No secrets are required. Dependencies are in `requirements.txt`; theme settings are in `.streamlit/config.toml`. Data and model calculations run locally in the Streamlit process. Simulations are cached by model settings, run count and seed; shared cache entries contain only public research data.
+
+## Design
+
+An editorial research layout based on the [Editorial skill in awesome-design-skills](https://github.com/bergside/awesome-design-skills/tree/main/skills/editorial), with accessible controls, labelled charts and restrained writing. See [design notes](docs/DESIGN.md).

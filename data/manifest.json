@@ -1,0 +1,18 @@
+{
+  "forecast_cutoff": "2024-06-14",
+  "ranking_ceiling": "2024-04-04",
+  "sources": {
+    "results": {
+      "url": "https://raw.githubusercontent.com/martj42/international_results/d5bd6de012c87e2f325de602ae77fe2f9ab61ef3/results.csv",
+      "raw_sha256": "5dcefd1aa0483979ea8378cef5be448d2005609d39945ea162378561a30a6767",
+      "bundled_sha256": "5dfcc25bfa79af4811fd49b1cde158d30a42b9a3710940ee697eedc94815709a",
+      "rows": 7131
+    },
+    "rankings": {
+      "url": "https://raw.githubusercontent.com/Rohxn14/fifa-wc2026-prediction/a4db631299ebcd193b535978488b43ecdc032ceb/fifa_ranking-2024-04-04.csv",
+      "raw_sha256": "3c805f993b3c8e2c76d7ed9f0ad16c68f54ab37137a75afadafc691f25324306",
+      "bundled_sha256": "5986bc1b5523b6dda607244913867bcd3c7f123c111f7e1d57d7d7284a9acbab",
+      "rows": 15783
+    }
+  }
+}

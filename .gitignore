@@ -1,2 +1,12 @@
 *.csv 
 *.pkl 
+
+# Streamlit application
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.streamlit/secrets.toml
+data/*-source.csv
+.DS_Store
+euro-2024-report.html
