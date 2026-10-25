@@ -18,6 +18,21 @@ def page_source():
 
 
 class AppSmokeTests(unittest.TestCase):
+    def test_real_entrypoint_and_all_goal_models(self):
+        """Exercise the actual Cloud entrypoint, including navigation and imports."""
+        app = AppTest.from_file(
+            str(Path(__file__).resolve().parents[1] / "app.py"),
+            default_timeout=90,
+        ).run()
+        self.assertEqual([e.message for e in app.exception], [])
+        self.assertEqual(len(app.title), 1)
+        for model in ["Mean baseline", "Linear regression", "Gradient boosting", "Random forest"]:
+            with self.subTest(model=model):
+                next(s for s in app.selectbox if s.key == "goal_model").select(model).run()
+                self.assertEqual([e.message for e in app.exception], [])
+                self.assertEqual(len(app.metric), 4)
+                self.assertTrue(any("Expected goals:" in c.value for c in app.caption))
+
     def test_each_page_renders(self):
         source = page_source()
         for page in [
